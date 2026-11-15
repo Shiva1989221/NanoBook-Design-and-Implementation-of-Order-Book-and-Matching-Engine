@@ -1,0 +1,8 @@
+# A small example to follow live. Predict the trades before running it!
+action,id,side,type,price,quantity
+ADD,1,SELL,LIMIT,101,10
+ADD,2,SELL,LIMIT,102,5
+ADD,3,SELL,LIMIT,101,5
+ADD,4,BUY,LIMIT,99,10
+ADD,5,BUY,LIMIT,101,12
+CANCEL,2

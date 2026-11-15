@@ -1,0 +1,11 @@
+# deliberately broken lines to see the error handling
+action,id,side,type,price,quantity
+ADD,1,SELL,LIMIT,101,10
+ADD,2,HOLD,LIMIT,101,5
+ADD,3,BUY,LIMIT,abc,5
+ADD,4,BUY,LIMIT,101,-5
+ADD,5,BUY,LIMIT,0,5
+ADD,1,BUY,LIMIT,100,5
+CANCEL,999
+FLY,7
+ADD,8,BUY,LIMIT,101,4

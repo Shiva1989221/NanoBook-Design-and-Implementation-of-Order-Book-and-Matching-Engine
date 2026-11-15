@@ -1,0 +1,7 @@
+trade_id,buy_order_id,sell_order_id,price,quantity,timestamp
+1,7,6,101,4,10
+2,7,2,101,1,10
+3,4,2,101,5,11
+4,4,3,102,5,11
+5,9,3,102,3,12
+6,5,10,98,6,13

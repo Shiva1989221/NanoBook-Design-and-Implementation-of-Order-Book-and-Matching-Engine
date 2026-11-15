@@ -1,0 +1,39 @@
+# Builds NanoBook, runs every test, and checks the sample output on Linux and Windows
+# each time you push to GitHub.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release
+
+      - name: Run tests
+        run: ctest --test-dir build -C Release --output-on-failure
+
+      - name: Smoke test (sample inputs must reproduce the sample outputs)
+        shell: bash
+        run: |
+          if [ -f build/nanobook ]; then bin=build; else bin=build/Release; fi
+          "$bin"/nanobook data/input.csv trades.csv --snapshots snapshots.csv
+          diff --strip-trailing-cr trades.csv data/sample_trades.csv
+          diff --strip-trailing-cr snapshots.csv data/sample_snapshots.csv
+          "$bin"/nanobook data/input_timestamps.csv trades_ts.csv
+          diff --strip-trailing-cr trades_ts.csv data/sample_trades_timestamps.csv
+          "$bin"/nanobook_bench 20000 --runs 1

@@ -1,0 +1,6 @@
+timestamp,command,best_bid,best_ask,spread
+1,1,,101,
+4,4,99,101,2
+11,11,98,102,4
+12,12,98,,
+13,13,,,

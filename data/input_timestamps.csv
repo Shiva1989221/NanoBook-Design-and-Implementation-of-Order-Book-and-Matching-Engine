@@ -1,0 +1,16 @@
+# Same orders as input.csv, with an explicit timestamp (nanoseconds) as the last column.
+# Compare data/sample_trades.csv (sequence-number timestamps) with data/sample_trades_timestamps.csv.
+action,id,side,type,price,quantity,timestamp
+ADD,1,SELL,LIMIT,101,10,1000000
+ADD,2,SELL,LIMIT,101,5,1000450
+ADD,3,SELL,LIMIT,102,8,1001200
+ADD,4,BUY,LIMIT,99,10,1002000
+ADD,5,BUY,LIMIT,98,6,1002750
+CANCEL,1,,,,,1003100
+ADD,6,SELL,LIMIT,101,4,1004000
+MODIFY,2,,,101,3,1004400
+MODIFY,2,,,101,6,1005000
+ADD,7,BUY,LIMIT,101,5,1005900
+MODIFY,4,,,102,10,1006500
+ADD,9,BUY,MARKET,,8,1007000
+ADD,10,SELL,MARKET,,10,1007800
